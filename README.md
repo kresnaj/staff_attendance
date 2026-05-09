@@ -275,8 +275,6 @@ Validasi visual saat check-in/check-out.
 - Tidak boleh upload dari galeri
 - Kamera harus realtime
 
-Karena tanpa validasi realtime, manusia akan menemukan cara upload foto lama tahun 2023 sambil tetap tidur di rumah. Evolusi spesies yang sangat konsisten.
-
 ---
 
 # 4. WhatsApp Gateway
