@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SIPEGAS - Reports &amp; Monitoring</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "tertiary": "#000000",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#f3f0f2",
+                      "secondary": "#0058be",
+                      "on-background": "#1b1b1d",
+                      "surface-container": "#f0edef",
+                      "on-error-container": "#93000a",
+                      "border-subtle": "#E2E8F0",
+                      "presence-info": "#6366F1",
+                      "on-tertiary-fixed": "#271901",
+                      "on-tertiary-fixed-variant": "#574425",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1b1b1d",
+                      "outline": "#76777d",
+                      "surface": "#fcf8fa",
+                      "primary-container": "#131b2e",
+                      "on-secondary-fixed": "#001a42",
+                      "error-container": "#ffdad6",
+                      "background": "#fcf8fa",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-container-highest": "#e4e2e4",
+                      "on-secondary-container": "#fefcff",
+                      "secondary-container": "#2170e4",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "tertiary-fixed": "#fcdeb5",
+                      "surface-dim": "#dcd9db",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#98805d",
+                      "surface-tint": "#565e74",
+                      "presence-warning": "#F59E0B",
+                      "inverse-surface": "#303032",
+                      "primary": "#000000",
+                      "inverse-primary": "#bec6e0",
+                      "surface-muted": "#F8FAFC",
+                      "surface-container-high": "#eae7e9",
+                      "on-primary-fixed": "#131b2e",
+                      "presence-success": "#10B981",
+                      "tertiary-container": "#271901",
+                      "outline-variant": "#c6c6cd",
+                      "surface-container-low": "#f6f3f5",
+                      "presence-danger": "#EF4444",
+                      "primary-fixed": "#dae2fd",
+                      "on-surface-variant": "#45464d",
+                      "surface-variant": "#e4e2e4",
+                      "on-primary-container": "#7c839b",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "tertiary-fixed-dim": "#dec29a",
+                      "surface-bright": "#fcf8fa",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#004395"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-padding-mobile": "16px",
+                      "touch-target-min": "48px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "container-padding-desktop": "32px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Manrope"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "h2": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "h2": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface-muted text-on-surface font-body-sm text-body-sm min-h-screen flex">
+<!-- TopNavBar (Hidden on Mobile, Visible on md+) -->
+<nav class="hidden md:flex flex-col bg-surface dark:bg-surface-container font-body-sm text-body-sm border-b border-subtle dark:border-outline-variant flat no shadows docked full-width top w-full fixed z-50">
+<div class="flex justify-between items-center w-full px-container-padding-desktop py-4">
+<!-- Brand -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-h1 text-h1 font-bold text-primary dark:text-on-primary-fixed">SIPEGAS</span>
+</div>
+<!-- Navigation Links -->
+<ul class="flex gap-8 items-center h-full">
+<li class="h-full flex items-center"><a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-95 active:opacity-80 transition-all px-3 py-2 rounded-lg" href="#">Dashboard</a></li>
+<li class="h-full flex items-center"><a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-95 active:opacity-80 transition-all px-3 py-2 rounded-lg" href="#">Employee</a></li>
+<li class="h-full flex items-center"><a class="text-primary dark:text-on-primary-container font-bold border-b-2 border-primary pb-1" href="#">Attendance</a></li>
+<li class="h-full flex items-center"><a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-95 active:opacity-80 transition-all px-3 py-2 rounded-lg" href="#">Payroll</a></li>
+<li class="h-full flex items-center"><a class="text-on-surface-variant dark:text-on-surface-variant font-medium hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors scale-95 active:opacity-80 transition-all px-3 py-2 rounded-lg" href="#">Reporting</a></li>
+</ul>
+<!-- Trailing Actions & Search -->
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-sm font-body-sm w-64 focus:ring-2 focus:ring-secondary focus:bg-surface transition-all" placeholder="Quick search here..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors hidden lg:block">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User avatar" class="w-10 h-10 rounded-full border border-subtle" data-alt="A close-up portrait of a professional man with a friendly smile, short brown hair, wearing a casual grey t-shirt, set against a clean, light studio background, evoking a trustworthy corporate identity in a modern light-mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9PtnH60BASUWZEgXxTxAxPdU4SZgo5ZUTVNsOQ-B8fjlX3GlrRbS03IF3J6524OZMYcoYCoXlAWyGGXNhhhjrDF61voqOFZZL_7YPgCsglzNHoSaOF-FcANmv1BzWb33rnA8SiwlOA6bxpWuN09mvZ7KcbrnzIwzu9rSOcuwYo0_snIYffrdvr3I1ZoUxG6wrtIskImUkJMvDSWz0ACd5fbRqvmegfkOjCaqISBjpQHPICS5eFvnK6GUY6ekwYPkcNHd85lgBaIc"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Mobile/Tablet Only for Admin context, hidden on Desktop top nav) -->
+<nav class="md:hidden bg-surface-container-lowest dark:bg-surface-container-lowest font-body-sm text-body-sm border-r border-subtle dark:border-outline-variant flat no shadows h-screen w-64 fixed left-0 top-0 flex flex-col h-full py-6 z-40 transform -translate-x-full transition-transform duration-300">
+<!-- Content placeholder for mobile side nav if toggled -->
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 mt-24 md:mt-24 px-container-padding-mobile md:px-container-padding-desktop pb-24 md:pb-8 w-full max-w-7xl mx-auto">
+<!-- Top Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+<!-- Average Check-in Card -->
+<div class="bg-surface rounded-xl border border-subtle p-6 col-span-1 md:col-span-2">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="vertical_align_top">vertical_align_top</span>
+</div>
+<div>
+<h2 class="font-h2 text-h2 text-on-surface">Average Check-In/Out Time</h2>
+<p class="text-on-surface-variant mt-1">Monitor daily attendance and track overall workforce performance trends.</p>
+</div>
+</div>
+<button class="flex items-center gap-1 text-on-surface-variant border border-subtle rounded-lg px-3 py-1.5 hover:bg-surface-container-low transition-colors">
+<span>Last 6 months</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+<!-- Stats Col -->
+<div class="space-y-6 col-span-1">
+<div>
+<div class="flex items-baseline gap-1">
+<span class="font-h1 text-[40px] font-bold text-on-surface leading-none">06:55</span>
+<span class="text-body-sm font-bold text-on-surface-variant">AM</span>
+</div>
+<p class="text-on-surface-variant mt-1">Avg. Monthly Check-In Time</p>
+</div>
+<div>
+<div class="flex items-baseline gap-1">
+<span class="font-h1 text-[40px] font-bold text-on-surface leading-none">05:12</span>
+<span class="text-body-sm font-bold text-on-surface-variant">PM</span>
+</div>
+<p class="text-on-surface-variant mt-1">Avg. Monthly Check-Out Time</p>
+</div>
+</div>
+<!-- Chart Placeholder Col -->
+<div class="col-span-1 md:col-span-2 h-40 relative flex items-end">
+<!-- Simulated Chart Grid -->
+<div class="absolute inset-0 border-b border-subtle border-dashed flex flex-col justify-between opacity-50">
+<div class="w-full border-t border-subtle border-dashed h-0"></div>
+<div class="w-full border-t border-subtle border-dashed h-0"></div>
+<div class="w-full border-t border-subtle border-dashed h-0"></div>
+</div>
+<!-- Simulated Line Chart -->
+<svg class="w-full h-full relative z-10" preserveaspectratio="none" viewbox="0 0 400 100">
+<path d="M 0 50 L 50 40 L 100 45 L 150 20 L 200 40 L 250 10 L 300 20 L 350 40 L 400 30" fill="none" stroke="#2170e4" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<circle cx="200" cy="40" fill="#1b1b1d" r="4"></circle>
+<circle cx="250" cy="10" fill="#2170e4" r="4"></circle>
+</svg>
+<!-- Tooltip -->
+<div class="absolute top-[5%] left-[62%] bg-on-surface text-on-primary text-[10px] font-data-mono px-2 py-1 rounded">07:03 AM</div>
+<!-- X Axis Labels -->
+<div class="absolute -bottom-6 left-0 w-full flex justify-between text-on-surface-variant text-[10px] font-data-mono">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span class="text-secondary font-bold">May</span><span>Jun</span><span>Jul</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column Stats -->
+<div class="flex flex-col gap-6 col-span-1">
+<!-- On-Time Rate -->
+<div class="bg-surface rounded-xl border border-subtle p-6 flex-1 flex flex-col">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="timer">timer</span>
+</div>
+<h3 class="font-h2 text-[18px] text-on-surface">On-Time Rate</h3>
+</div>
+<p class="text-on-surface-variant text-sm mb-4">Measures how many check-ins happened on schedule</p>
+<div class="flex items-end gap-3 mt-auto mb-4">
+<span class="font-h1 text-[48px] font-bold text-on-surface leading-none">92%</span>
+<span class="bg-surface-container-highest text-on-surface px-2 py-0.5 rounded-full text-xs font-bold mb-2">+2.3%</span>
+</div>
+<div class="h-16 w-full relative">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 200 50">
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#10B981;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:#10B981;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M 0 50 L 0 30 L 25 10 L 50 40 L 75 15 L 100 45 L 125 10 L 150 20 L 175 5 L 200 25 L 200 50 Z" fill="url(#grad1)"></path>
+<path d="M 0 30 L 25 10 L 50 40 L 75 15 L 100 45 L 125 10 L 150 20 L 175 5 L 200 25" fill="none" stroke="#10B981" stroke-width="1.5" vector-effect="non-scaling-stroke"></path>
+</svg>
+<div class="absolute bottom-0 left-0 w-full flex justify-between text-outline text-[10px] uppercase font-label-caps">
+<span>m</span><span>t</span><span>w</span><span>t</span><span>f</span><span>s</span><span>s</span>
+</div>
+</div>
+</div>
+<!-- AI Insight Card -->
+<div class="bg-secondary-container rounded-xl p-6 flex-1 text-on-secondary-container relative overflow-hidden">
+<!-- Decorative blur -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary-fixed-dim rounded-full mix-blend-multiply filter blur-2xl opacity-50"></div>
+<div class="flex items-center gap-2 mb-4 relative z-10">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="font-h2 text-[16px] text-on-secondary-container">Attendance Insight</h3>
+</div>
+<div class="mb-4 relative z-10">
+<span class="font-h1 text-[40px] font-bold leading-none">12%</span>
+<p class="font-bold text-sm mt-1">Attendance Risk (Next 7 Days)</p>
+</div>
+<p class="text-sm opacity-90 relative z-10 leading-relaxed">
+                        AI forecasts a possible rise in late arrivals and absences over the next week, influenced by patterns such as Friday backlogs, weather conditions, and recent attendance history.
+                    </p>
+<div class="flex items-center justify-between mt-6 relative z-10">
+<button class="p-1 hover:bg-secondary rounded-full transition-colors"><span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span></button>
+<div class="flex gap-1">
+<div class="h-1 w-6 bg-on-secondary-container rounded-full"></div>
+<div class="h-1 w-2 bg-on-secondary-container/30 rounded-full"></div>
+<div class="h-1 w-2 bg-on-secondary-container/30 rounded-full"></div>
+</div>
+<button class="p-1 hover:bg-secondary rounded-full transition-colors"><span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- History Table Section -->
+<div class="bg-surface rounded-xl border border-subtle overflow-hidden">
+<!-- Table Header -->
+<div class="p-6 border-b border-subtle flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="history">history</span>
+</div>
+<h2 class="font-h2 text-[18px] text-on-surface">Check-in/out History</h2>
+</div>
+<div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+<div class="flex gap-2">
+<button class="px-4 py-1.5 bg-secondary-container text-on-secondary-container rounded-full font-medium text-sm transition-colors hover:bg-secondary hover:text-on-secondary">Today</button>
+<button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-medium text-sm transition-colors hover:bg-surface-container-high">Absent</button>
+<button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-medium text-sm transition-colors hover:bg-surface-container-high">Request Leave</button>
+</div>
+<div class="flex gap-3 ml-auto md:ml-4">
+<button class="flex items-center gap-2 bg-secondary text-on-secondary px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>Add New Employee</span>
+</button>
+<button class="px-4 py-2 text-on-surface font-medium hover:bg-surface-container-low rounded-lg transition-colors border border-subtle">View All</button>
+</div>
+</div>
+</div>
+<!-- Desktop Table -->
+<div class="hidden lg:block w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-muted text-on-surface-variant font-label-caps text-label-caps uppercase border-b border-subtle">
+<th class="py-4 px-6 font-semibold w-1/4">Name</th>
+<th class="py-4 px-6 font-semibold w-1/5">Role</th>
+<th class="py-4 px-6 font-semibold w-1/6">Check-in Time</th>
+<th class="py-4 px-6 font-semibold w-1/6">Check-out Time</th>
+<th class="py-4 px-6 font-semibold w-1/6">Status</th>
+<th class="py-4 px-6 font-semibold">Notes</th>
+<th class="py-4 px-6 font-semibold w-12 text-right"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-subtle">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a young professional woman with dark hair, smiling warmly, wearing a business casual top, against a soft, light-mode corporate studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3Zm1mwPA81kjsns8ccrlULK_7Ai32iZWH3eR07jmuKJFFol-oSa1JIfxz7v_k7X4WxwixglRstdPVnwyyNcFAz3-3k0Rg5XT_9zGS0_wTTQBgsK8-O22QJJ3PnERi3R6vicBWUiHDm-jcwMomOYsy3gbiPF6hBlJ1yrLLlSLVxJCxVsdb_dBSkJ3MMSisUp6-m835-1YF5YlOV_rQ0ghMXKrVmA6xrveBHDMACiuHAIlrh6B9fV886vxutl5REbBya3ZMrnwvmqM"/>
+<div>
+<div class="flex items-center gap-2">
+<p class="font-semibold text-on-surface">Maria Moore</p>
+<span class="bg-presence-success/20 text-presence-success text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Check-In</span>
+</div>
+<p class="text-on-surface-variant text-xs mt-0.5 font-data-mono">EP2346172</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<p class="font-medium text-on-surface">Product Designer</p>
+<p class="text-on-surface-variant text-xs mt-0.5">Creative Division</p>
+</td>
+<td class="py-4 px-6 font-data-mono text-on-surface">08:12 AM</td>
+<td class="py-4 px-6 font-data-mono text-on-surface">05:06 PM</td>
+<td class="py-4 px-6">
+<span class="bg-presence-warning/20 text-[#D97706] font-semibold text-xs px-3 py-1 rounded-full">Late Check-in</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant text-sm">Arrived 12 mins late</td>
+<td class="py-4 px-6 text-right">
+<button class="p-1 text-on-surface-variant hover:bg-surface-container-high rounded opacity-0 group-hover:opacity-100 transition-all"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a male professional with short dark hair and a neat beard, wearing a smart casual shirt, smiling confidently against a minimal light-mode studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf6TwqHWN-jvYVpZdwQUcVH-fBMyzURQMb7ZQMNpr-rHWaBpV-0Ooxb_bV42_Z38d7I2JSYVnWafkazntjJmoGsF-_ovKSlXwbWeukcGuBiM277f2uf0JgOEnR1289odol5r8xVwZP0HpXqH-2Fu48NeI5R72BmLS3r7ousUrYA04Lq_NGoGsHM_Saj8KWiQhY_YNwFsONkz6ScUH-Q4Nc2_u_Gq94nMAhdxtEnlJmnL5fOT1mYr_aVi3wH2KInZLibijxHHPXDuE"/>
+<div>
+<div class="flex items-center gap-2">
+<p class="font-semibold text-on-surface">Stephen Wong</p>
+<span class="bg-presence-danger/20 text-presence-danger text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Absent</span>
+</div>
+<p class="text-on-surface-variant text-xs mt-0.5 font-data-mono">EP2346121</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<p class="font-medium text-on-surface">Front-End Developer</p>
+<p class="text-on-surface-variant text-xs mt-0.5">Development Division</p>
+</td>
+<td class="py-4 px-6 font-data-mono text-on-surface">07:00 AM</td>
+<td class="py-4 px-6 font-data-mono text-on-surface">04:55 PM</td>
+<td class="py-4 px-6">
+<span class="bg-presence-success/20 text-presence-success font-semibold text-xs px-3 py-1 rounded-full">Punctual</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant text-sm">On schedule</td>
+<td class="py-4 px-6 text-right">
+<button class="p-1 text-on-surface-variant hover:bg-surface-container-high rounded opacity-0 group-hover:opacity-100 transition-all"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of an elegant woman with straight dark hair, wearing a professional blazer, expressing a calm demeanor in a bright, light-mode corporate setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtCL2W5VG2Yef4wpry2M8oTvkPQGafJQOIeIfWTgOUIz1AIh4XsrBe-t5m5126lHyeff-WtxakOeGM1EU7hkSRxjO0V4DJr7YTWUZnHweIVrZg75ydXNAYTkCCXeibZ8dbJZetfUd9epo-0q98YbX0yNhehrSatcPK4iy6MNXRs7-Q2VkHD31IZhM8CZz-M3Z83gJgGyU4zIq2ieIcZJAbe56vSgI7KXnmLjd_SO_WGTBEL2SkGUAoDurkgNtAErykHwODukLJNaY"/>
+<div>
+<div class="flex items-center gap-2">
+<p class="font-semibold text-on-surface">Rebecca Miller</p>
+<span class="bg-presence-success/20 text-presence-success text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Check-In</span>
+</div>
+<p class="text-on-surface-variant text-xs mt-0.5 font-data-mono">EP2346123</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<p class="font-medium text-on-surface">Lead HRD</p>
+<p class="text-on-surface-variant text-xs mt-0.5">HR Division</p>
+</td>
+<td class="py-4 px-6 font-data-mono text-on-surface">08:45 AM</td>
+<td class="py-4 px-6 font-data-mono text-on-surface">06:30 PM</td>
+<td class="py-4 px-6">
+<span class="bg-secondary-container text-secondary font-semibold text-xs px-3 py-1 rounded-full">Overtime</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant text-sm">Worked extra 1h 30m</td>
+<td class="py-4 px-6 text-right">
+<button class="p-1 text-on-surface-variant hover:bg-surface-container-high rounded opacity-0 group-hover:opacity-100 transition-all"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Mobile Table View (Cards) -->
+<div class="lg:hidden flex flex-col divide-y divide-subtle">
+<!-- Mobile Row 1 -->
+<div class="p-4 bg-surface hover:bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a young professional woman with dark hair, smiling warmly, wearing a business casual top, against a soft, light-mode corporate studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl_AXG2GsMkbw4kBrPq8t-cCLR9lc6dwrq9aq0GVPn-Bxgfs9iLAynvmGftcg_KFGcTIynpUdEDxBxk3-vyXhAtozvcwIcYsgXzfke_CZjYZs32HMHsrMA0G9oklC-UBz8PYnktkASbT9r5-9qj2og1YevTJu7OHg-a8Cf30jisTJjPBthOtkBLukT3zk5IFf5BBSPsovah6UfI9z3JS_FNhZlc02g-RsTp6piOJW1L3CkS45R2OFzSzHjUt-NJ2zqzdND_PJx8Ws"/>
+<div>
+<p class="font-semibold text-on-surface">Maria Moore</p>
+<p class="text-on-surface-variant text-xs font-data-mono">EP2346172 • Creative Div</p>
+</div>
+</div>
+<span class="bg-presence-warning/20 text-[#D97706] font-semibold text-[10px] px-2 py-1 rounded-full">Late</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-sm">
+<div class="bg-surface-muted p-2 rounded">
+<span class="text-on-surface-variant text-xs block mb-1">In</span>
+<span class="font-data-mono font-medium">08:12 AM</span>
+</div>
+<div class="bg-surface-muted p-2 rounded">
+<span class="text-on-surface-variant text-xs block mb-1">Out</span>
+<span class="font-data-mono font-medium">05:06 PM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Visible only on Mobile, suppressed based on rules, but keeping semantic structure ready if needed by responsive intent) -->
+<!-- Usually suppressed on Admin Dashboard Desktop view, but included for complete responsive requirement -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-surface-container-highest shadow-md border-t border-subtle dark:border-none rounded-t-xl font-label-caps text-label-caps">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 active:bg-surface-container-high transition-transform scale-90 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span>Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl p-2 active:bg-surface-container-high transition-transform scale-90 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="camera_alt">camera_alt</span>
+<span>Presensi</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 active:bg-surface-container-high transition-transform scale-90 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="history">history</span>
+<span>Riwayat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 active:bg-surface-container-high transition-transform scale-90 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span>Profil</span>
+</a>
+</nav>
+</body></html>

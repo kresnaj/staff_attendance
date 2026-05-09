@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leave/Permit Application - SIPEGAS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ba1a1a",
+                        "tertiary": "#000000",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f3f0f2",
+                        "secondary": "#0058be",
+                        "on-background": "#1b1b1d",
+                        "surface-container": "#f0edef",
+                        "on-error-container": "#93000a",
+                        "border-subtle": "#E2E8F0",
+                        "presence-info": "#6366F1",
+                        "on-tertiary-fixed": "#271901",
+                        "on-tertiary-fixed-variant": "#574425",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1b1b1d",
+                        "outline": "#76777d",
+                        "surface": "#fcf8fa",
+                        "primary-container": "#131b2e",
+                        "on-secondary-fixed": "#001a42",
+                        "error-container": "#ffdad6",
+                        "background": "#fcf8fa",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-secondary-container": "#fefcff",
+                        "secondary-container": "#2170e4",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-fixed": "#fcdeb5",
+                        "surface-dim": "#dcd9db",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#98805d",
+                        "surface-tint": "#565e74",
+                        "presence-warning": "#F59E0B",
+                        "inverse-surface": "#303032",
+                        "primary": "#000000",
+                        "inverse-primary": "#bec6e0",
+                        "surface-muted": "#F8FAFC",
+                        "surface-container-high": "#eae7e9",
+                        "on-primary-fixed": "#131b2e",
+                        "presence-success": "#10B981",
+                        "tertiary-container": "#271901",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container-low": "#f6f3f5",
+                        "presence-danger": "#EF4444",
+                        "primary-fixed": "#dae2fd",
+                        "on-surface-variant": "#45464d",
+                        "surface-variant": "#e4e2e4",
+                        "on-primary-container": "#7c839b",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "surface-bright": "#fcf8fa",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004395"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "container-padding-mobile": "16px",
+                        "touch-target-min": "48px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "container-padding-desktop": "32px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h1": ["Manrope"],
+                        "data-mono": ["JetBrains Mono"],
+                        "h2": ["Manrope"]
+                    },
+                    fontSize: {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h1": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-muted text-on-surface font-body-lg antialiased pb-[80px]">
+<!-- App Bar -->
+<header class="bg-surface sticky top-0 z-40 border-b border-subtle shadow-sm px-container-padding-mobile py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="font-h2 text-h2 text-primary">Pengajuan Izin</h1>
+</div>
+</header>
+<!-- Main Content -->
+<main class="p-container-padding-mobile flex flex-col gap-6 max-w-md mx-auto">
+<!-- Leave Type Selection -->
+<section class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Tipe Pengajuan</label>
+<div class="grid grid-cols-3 gap-3">
+<label class="cursor-pointer relative">
+<input checked="" class="peer sr-only" name="leaveType" type="radio" value="sakit"/>
+<div class="flex flex-col items-center justify-center p-4 rounded-xl border border-subtle bg-surface hover:bg-surface-container-low peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container transition-all text-on-surface-variant">
+<span class="material-symbols-outlined mb-2" data-weight="fill">medical_services</span>
+<span class="font-body-sm text-body-sm font-medium">Sakit</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="leaveType" type="radio" value="izin"/>
+<div class="flex flex-col items-center justify-center p-4 rounded-xl border border-subtle bg-surface hover:bg-surface-container-low peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container transition-all text-on-surface-variant">
+<span class="material-symbols-outlined mb-2" data-weight="fill">event_busy</span>
+<span class="font-body-sm text-body-sm font-medium">Izin</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="leaveType" type="radio" value="cuti"/>
+<div class="flex flex-col items-center justify-center p-4 rounded-xl border border-subtle bg-surface hover:bg-surface-container-low peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container transition-all text-on-surface-variant">
+<span class="material-symbols-outlined mb-2" data-weight="fill">flight_takeoff</span>
+<span class="font-body-sm text-body-sm font-medium">Cuti</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Date Range Selection -->
+<section class="flex flex-col gap-3 bg-surface rounded-xl border border-subtle p-4 shadow-sm">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Periode</h2>
+<div class="flex gap-4 items-center">
+<div class="flex-1 flex flex-col gap-1">
+<label class="text-xs text-outline font-medium">Mulai</label>
+<div class="flex items-center gap-2 border-b border-subtle pb-1">
+<span class="material-symbols-outlined text-outline text-sm">calendar_month</span>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-sm text-body-sm text-on-surface" type="date" value="2023-10-24"/>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline mt-4">arrow_forward</span>
+<div class="flex-1 flex flex-col gap-1">
+<label class="text-xs text-outline font-medium">Sampai</label>
+<div class="flex items-center gap-2 border-b border-subtle pb-1">
+<span class="material-symbols-outlined text-outline text-sm">calendar_month</span>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-sm text-body-sm text-on-surface" type="date" value="2023-10-25"/>
+</div>
+</div>
+</div>
+<div class="mt-2 text-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">info</span>
+                Total 2 hari kerja
+            </div>
+</section>
+<!-- Reason / Description -->
+<section class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Keterangan</label>
+<textarea class="w-full rounded-xl border border-subtle bg-surface p-3 font-body-sm text-body-sm text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary min-h-[100px] resize-none" placeholder="Tuliskan alasan pengajuan secara singkat..."></textarea>
+</section>
+<!-- Document Upload -->
+<section class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Dokumen Bukti</label>
+<span class="text-xs text-outline">*Wajib untuk sakit &gt; 1 hari</span>
+</div>
+<div class="border-2 border-dashed border-subtle rounded-xl bg-surface-container-lowest p-6 flex flex-col items-center justify-center gap-3 text-center cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">upload_file</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-medium text-primary mb-1">Pilih File atau Foto Bukti</p>
+<p class="text-xs text-outline">Maks. 5MB (JPG, PNG, PDF)</p>
+</div>
+<button class="mt-2 px-4 py-2 rounded-full bg-surface-container-high text-on-surface font-body-sm text-body-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+                    Ambil Foto
+                </button>
+</div>
+</section>
+<!-- Submit Button -->
+<button class="w-full h-touch-target-min bg-secondary text-on-secondary font-body-lg text-body-lg font-semibold rounded-xl shadow-md hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-colors mt-4 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-weight="fill">send</span>
+            Kirim Pengajuan
+        </button>
+</main>
+<!-- Bottom Navigation Bar (Generated from JSON) -->
+<!-- Suppressed navigation logic: This is a task-focused screen (form submission) that implies a temporary departure from the main flow, and it has a "Back" action. However, the user prompt specifically states "Bottom navigation visible.", overriding the normal suppression rule for this specific output. -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-surface-container-highest shadow-lg border-t border-subtle dark:border-none md:hidden rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 scale-90 active:scale-95 transition-transform active:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 scale-90 active:scale-95 transition-transform active:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">camera_alt</span>
+<span class="font-label-caps text-label-caps mt-1">Presensi</span>
+</a>
+<!-- Using "Izin & Cuti" intent mapping, 'Riwayat' is the closest fit in the bottom nav array for managing past/current requests -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl p-2 scale-90 active:scale-95 transition-transform active:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined" data-weight="fill">history</span>
+<span class="font-label-caps text-label-caps mt-1">Riwayat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 scale-90 active:scale-95 transition-transform active:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profil</span>
+</a>
+</nav>
+</body></html>

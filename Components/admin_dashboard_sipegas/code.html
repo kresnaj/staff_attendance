@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SIPEGAS - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "tertiary": "#000000",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#f3f0f2",
+                      "secondary": "#0058be",
+                      "on-background": "#1b1b1d",
+                      "surface-container": "#f0edef",
+                      "on-error-container": "#93000a",
+                      "border-subtle": "#E2E8F0",
+                      "presence-info": "#6366F1",
+                      "on-tertiary-fixed": "#271901",
+                      "on-tertiary-fixed-variant": "#574425",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1b1b1d",
+                      "outline": "#76777d",
+                      "surface": "#fcf8fa",
+                      "primary-container": "#131b2e",
+                      "on-secondary-fixed": "#001a42",
+                      "error-container": "#ffdad6",
+                      "background": "#fcf8fa",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-container-highest": "#e4e2e4",
+                      "on-secondary-container": "#fefcff",
+                      "secondary-container": "#2170e4",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "tertiary-fixed": "#fcdeb5",
+                      "surface-dim": "#dcd9db",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#98805d",
+                      "surface-tint": "#565e74",
+                      "presence-warning": "#F59E0B",
+                      "inverse-surface": "#303032",
+                      "primary": "#000000",
+                      "inverse-primary": "#bec6e0",
+                      "surface-muted": "#F8FAFC",
+                      "surface-container-high": "#eae7e9",
+                      "on-primary-fixed": "#131b2e",
+                      "presence-success": "#10B981",
+                      "tertiary-container": "#271901",
+                      "outline-variant": "#c6c6cd",
+                      "surface-container-low": "#f6f3f5",
+                      "presence-danger": "#EF4444",
+                      "primary-fixed": "#dae2fd",
+                      "on-surface-variant": "#45464d",
+                      "surface-variant": "#e4e2e4",
+                      "on-primary-container": "#7c839b",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "tertiary-fixed-dim": "#dec29a",
+                      "surface-bright": "#fcf8fa",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#004395"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-padding-mobile": "16px",
+                      "touch-target-min": "48px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "container-padding-desktop": "32px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Manrope"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "h2": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "h2": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-muted text-on-surface font-body-sm h-screen flex overflow-hidden">
+<!-- Desktop Sidebar -->
+<aside class="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-subtle bg-surface-container-lowest dark:bg-surface-container-lowest flex-col py-6 z-20">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-on-secondary font-h2 text-h2 font-extrabold">
+                S
+            </div>
+<div>
+<h1 class="font-h2 text-h2 font-extrabold text-secondary dark:text-secondary-fixed">SIPEGAS</h1>
+<p class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Admin System</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg mx-2 hover:bg-surface-container dark:hover:bg-surface-variant transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-body-sm text-body-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high mx-2 hover:bg-surface-container dark:hover:bg-surface-variant transition-all translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span class="font-body-sm text-body-sm font-medium">Presensi</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high mx-2 hover:bg-surface-container dark:hover:bg-surface-variant transition-all translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-sm text-body-sm font-medium">Data Pegawai</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high mx-2 hover:bg-surface-container dark:hover:bg-surface-variant transition-all translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-sm text-body-sm font-medium">Laporan</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high mx-2 hover:bg-surface-container dark:hover:bg-surface-variant transition-all translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">event_busy</span>
+<span class="font-body-sm text-body-sm font-medium">Izin &amp; Cuti</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high mx-2 hover:bg-surface-container dark:hover:bg-surface-variant transition-all translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm text-body-sm font-medium">Pengaturan</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-lg font-body-sm text-body-sm font-semibold flex justify-center items-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">sync</span>
+                Sync Data
+            </button>
+<div class="mt-6 space-y-2 border-t border-subtle pt-4">
+<a class="flex items-center gap-3 px-2 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-sm text-body-sm">Bantuan</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-2 text-error hover:bg-error-container hover:text-on-error-container rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-sm text-body-sm">Keluar</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 h-full flex flex-col relative w-full">
+<!-- Top App Bar (Mobile & Desktop variants) -->
+<header class="bg-surface dark:bg-surface-container flex justify-between items-center w-full px-container-padding-mobile md:px-container-padding-desktop py-4 border-b border-subtle dark:border-outline-variant z-10 sticky top-0 shadow-sm md:shadow-none">
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Desktop Search / Context -->
+<div class="hidden md:flex flex-1 items-center max-w-md ml-4">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-full bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface focus:ring-0 transition-all font-body-sm text-body-sm text-on-surface placeholder:text-outline" placeholder="Search employee, attendance..." type="text"/>
+</div>
+</div>
+<!-- Mobile Brand -->
+<div class="md:hidden font-h2 text-h2 font-bold text-primary dark:text-on-primary-fixed">
+                SIPEGAS
+            </div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-2 md:gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-8 w-px bg-border-subtle mx-1 hidden md:block"></div>
+<div class="flex items-center gap-3 cursor-pointer p-1 pr-3 rounded-full hover:bg-surface-container-low transition-colors border border-transparent hover:border-subtle">
+<img alt="User avatar" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFaqfkJzPhNCDd3D4ZPV-DL9JnSZ8CXVm1Tl0IsM136At2VOeHcK9S9Y2BnEsWWyEqeq2uVo6C7cJg2rb8qSjbNJSzl6SAl6NP82DcSH_-6r0_Hhz7xXyVj4mg_dwwNmcS4Y4-AmI-IpMPqxd4q5Jy_-BQ7lcSHu9HdqfOfJB4SVXas6phh01qhGBMBUIdTf0IP8BTzrKf22OdA0k2DLHHDvTpLdjzRSPlqOsmJ9UmlHdXrRe_Bj0e7zFtgMlM6LQ1R_H-u60dqmg"/>
+<div class="hidden lg:block text-left">
+<p class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">Admin User</p>
+<p class="font-label-caps text-label-caps text-outline leading-tight">Super Admin</p>
+</div>
+<span class="material-symbols-outlined text-outline hidden lg:block">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-container-padding-mobile md:p-container-padding-desktop bg-surface-muted">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Welcome & Date Context -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface mb-1">Dashboard Overview</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Here's what's happening today, Oct 24th, 2023.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface text-on-surface border border-subtle rounded-lg font-body-sm text-body-sm font-medium flex items-center gap-2 hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-outline">calendar_today</span>
+                            Today
+                            <span class="material-symbols-outlined text-outline ml-1">expand_more</span>
+</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-body-sm text-body-sm font-medium flex items-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">qr_code</span>
+                            Generate QR
+                        </button>
+</div>
+</div>
+<!-- Macro Stats Bento -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+<!-- Stat Card 1 -->
+<div class="bg-surface rounded-xl p-5 border border-subtle shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline uppercase tracking-wide mb-1">Total Pegawai</p>
+<div class="flex items-baseline gap-2">
+<h3 class="font-h1 text-h1 text-on-surface">142</h3>
+</div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface rounded-xl p-5 border border-subtle shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-presence-success/20 text-presence-success flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline uppercase tracking-wide mb-1">Hadir Hari Ini</p>
+<div class="flex items-baseline gap-2">
+<h3 class="font-h1 text-h1 text-on-surface">128</h3>
+<span class="font-body-sm text-body-sm text-presence-success font-medium flex items-center"><span class="material-symbols-outlined text-[16px]">arrow_upward</span> 90%</span>
+</div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface rounded-xl p-5 border border-subtle shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-presence-warning/20 text-presence-warning flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">schedule</span>
+</div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline uppercase tracking-wide mb-1">Terlambat</p>
+<div class="flex items-baseline gap-2">
+<h3 class="font-h1 text-h1 text-on-surface">8</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">pegawai</span>
+</div>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface rounded-xl p-5 border border-subtle shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-full bg-presence-danger/20 text-presence-danger flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_busy</span>
+</div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline uppercase tracking-wide mb-1">Izin / Sakit</p>
+<div class="flex items-baseline gap-2">
+<h3 class="font-h1 text-h1 text-on-surface">6</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">pegawai</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Bento Grid Area -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Trend Chart Section (Takes up 2 columns on large screens) -->
+<div class="lg:col-span-2 bg-surface rounded-xl border border-subtle shadow-sm p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-h2 text-h2 text-on-surface">Trend Kehadiran</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Minggu ini vs Minggu lalu</p>
+</div>
+<button class="p-2 text-outline hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Placeholder for Chart -->
+<div class="flex-1 bg-surface-container-lowest rounded-lg border border-dashed border-subtle flex flex-col items-center justify-center min-h-[250px] relative overflow-hidden">
+<!-- Abstract Chart Representation using CSS -->
+<div class="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-secondary/10 to-transparent flex items-end px-4 pb-4 gap-2 opacity-70">
+<div class="w-1/6 h-[40%] bg-secondary/40 rounded-t-sm"></div>
+<div class="w-1/6 h-[70%] bg-secondary/60 rounded-t-sm"></div>
+<div class="w-1/6 h-[50%] bg-secondary/50 rounded-t-sm"></div>
+<div class="w-1/6 h-[90%] bg-secondary rounded-t-sm"></div>
+<div class="w-1/6 h-[60%] bg-secondary/70 rounded-t-sm"></div>
+<div class="w-1/6 h-[80%] bg-secondary/80 rounded-t-sm"></div>
+</div>
+<!-- Trend Line Approximation -->
+<svg class="absolute inset-0 w-full h-full opacity-50 pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="text-secondary" d="M0,80 Q20,40 40,60 T80,20 T100,50" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+<p class="font-body-sm text-body-sm text-outline z-10 bg-surface/80 px-3 py-1 rounded-full backdrop-blur-sm">Grafik Trend (Data Visualization Placeholder)</p>
+</div>
+</div>
+<!-- Geofencing Map Widget -->
+<div class="bg-surface rounded-xl border border-subtle shadow-sm overflow-hidden flex flex-col h-[400px]">
+<div class="p-4 border-b border-subtle flex justify-between items-center bg-surface z-10">
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Live Geofence</h3>
+<p class="font-label-caps text-label-caps text-outline">Radius: 50m</p>
+</div>
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-presence-success opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-presence-success"></span>
+</span>
+</div>
+<!-- Map Area -->
+<div class="flex-1 relative bg-surface-dim">
+<img alt="Map Placeholder" class="w-full h-full object-cover opacity-60" data-alt="A stylized, clean, top-down satellite map view of an urban or suburban school campus area. The map should have a muted, cool-toned color palette (light blues, greys, and pale greens) to match a modern UI aesthetic. A subtle, glowing blue circular radius overlay should be visible in the center, representing a geofence boundary. The overall feel should be functional, technological, and clean, without overly saturated colors or distracting real-world clutter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_HXOjdj5AsA6M068EMlEWCPZn3xOoT6K33UfQXzlk6jDtR0S8iTm5sfhKzuqnm5Cshy1udwjoI99BUz9gD7IsywzMBxikKHQblDdc94Z6X-_QuQve_zezzQkZ5q_fRdnRKcC-I8VamJdGbJrgukNUQPV9JOxqEd8SoViuaAV0ZIk3fgjVFPOsfwD9R0dbBtcFZ8nwbDHCfirJB_1y_z56GMmO_VKBPwXPLfITxjjvHXt6PVe9lypve3u5C5chxcRZRzrdscIcxbw"/>
+<!-- Geofence Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-32 h-32 rounded-full border-2 border-secondary bg-secondary/20 flex items-center justify-center relative">
+<div class="w-3 h-3 bg-secondary rounded-full absolute shadow-[0_0_10px_rgba(0,88,190,0.8)]"></div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute bottom-4 right-4 flex flex-col gap-2">
+<button class="w-8 h-8 bg-surface rounded shadow-sm flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+<button class="w-8 h-8 bg-surface rounded shadow-sm flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Monitoring Table -->
+<div class="bg-surface rounded-xl border border-subtle shadow-sm overflow-hidden">
+<div class="p-6 border-b border-subtle flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<h3 class="font-h2 text-h2 text-on-surface">Recent Check-ins</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live monitoring of employee attendance.</p>
+</div>
+<div class="flex gap-2 w-full sm:w-auto">
+<button class="px-3 py-1.5 bg-surface-container-low border border-subtle rounded-md font-body-sm text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface flex-1 sm:flex-none text-center">
+                                Filter
+                            </button>
+<button class="px-3 py-1.5 bg-surface-container-low border border-subtle rounded-md font-body-sm text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface flex-1 sm:flex-none text-center">
+                                Export
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-muted border-b border-subtle font-label-caps text-label-caps text-outline uppercase tracking-wider">
+<th class="p-4 font-semibold">Pegawai</th>
+<th class="p-4 font-semibold">Waktu Masuk</th>
+<th class="p-4 font-semibold">Status</th>
+<th class="p-4 font-semibold">Lokasi</th>
+<th class="p-4 font-semibold text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-subtle font-body-sm text-body-sm text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="p-4 flex items-center gap-3">
+<div class="relative">
+<img alt="Selfie" class="w-10 h-10 rounded-full object-cover border border-subtle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtpfgbyKFboIgC6Qn4dnQt0HQl3IiwJtB2HFDwXNlRAdj0LP8ocJcrlBtgQjz9StfN94fYclSd6lnKUmuTWjj3zxzOepuD-M68edQss2zl5_BdFCeUizFpxmVuUe_L3ZKCU-gwa8H7UFQw7YpgF9XHtWCXu0YDR8hTE54hs9JGRCS6A-VLZ5tZ56BZqc2z_kfIUsDk3ncn9bIliHA5TGfhGC21N6kOVsjl7JcXOMmd8fLI84fHDaIxc28brs-Gmfb50cvfC64TK14"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-surface rounded-full flex items-center justify-center border border-subtle">
+<span class="material-symbols-outlined text-[10px] text-presence-success">photo_camera</span>
+</div>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Sarah Johnson</p>
+<p class="text-on-surface-variant text-xs">Guru Matematika</p>
+</div>
+</td>
+<td class="p-4 font-data-mono text-data-mono">
+                                        07:15:22 AM
+                                    </td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-presence-success/10 text-presence-success font-label-caps text-label-caps border border-presence-success/20">
+                                            Hadir
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                            Within Radius
+                                        </div>
+</td>
+<td class="p-4 text-right">
+<button class="p-1 text-outline hover:text-on-surface hover:bg-surface-container rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="p-4 flex items-center gap-3">
+<div class="relative">
+<img alt="Selfie" class="w-10 h-10 rounded-full object-cover border border-subtle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXd-IwKQdlzqnqOFFqyE1bhkpBw2xkKnGjgDrBXugzfp0VZRRfGigVRJ1JkhPX7N18guqFH0I1ou-MZ7H3f3dyIuHqvcqJttbed4I6dfs2Hpt3SoGJu6JGrEB0OMiz0LfL5cLc4yjsq39vjihFxFfaztscgBYCD9ERczFWhdL6KeO3nY59nSH1qyNKYrLxYnGMe3iaHORuXKGQc20nPupclLv6CY9Pw_S23CKpcuVFds9iKIuK4hbH-f2zM_LUcAQs67m8OhUTBUk"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-surface rounded-full flex items-center justify-center border border-subtle">
+<span class="material-symbols-outlined text-[10px] text-presence-success">photo_camera</span>
+</div>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Budi Santoso</p>
+<p class="text-on-surface-variant text-xs">Staff Administrasi</p>
+</div>
+</td>
+<td class="p-4 font-data-mono text-data-mono text-presence-warning">
+                                        07:42:10 AM
+                                    </td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-presence-warning/10 text-presence-warning font-label-caps text-label-caps border border-presence-warning/20">
+                                            Terlambat
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                            Within Radius
+                                        </div>
+</td>
+<td class="p-4 text-right">
+<button class="p-1 text-outline hover:text-on-surface hover:bg-surface-container rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-outline border border-subtle">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Ahmad Ridwan</p>
+<p class="text-on-surface-variant text-xs">Guru Olahraga</p>
+</div>
+</td>
+<td class="p-4 font-data-mono text-data-mono text-outline">
+                                        --:--:--
+                                    </td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-presence-danger/10 text-presence-danger font-label-caps text-label-caps border border-presence-danger/20">
+                                            Sakit
+                                        </span>
+</td>
+<td class="p-4">
+<span class="text-outline text-xs italic">Menunggu Approval</span>
+</td>
+<td class="p-4 text-right">
+<button class="p-1 text-secondary hover:bg-secondary-container/50 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100 font-label-caps text-label-caps mr-2">
+                                            Review
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-subtle bg-surface-muted text-center">
+<a class="text-secondary font-body-sm text-body-sm font-semibold hover:underline" href="#">View All Records</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation (Hidden on Desktop) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-surface-container-highest shadow-lg border-t border-subtle dark:border-none rounded-t-xl pb-safe">
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl p-2 scale-90 active:scale-95 transition-transform w-16" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps mt-1">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 active:bg-surface-container-high transition-transform scale-90 active:scale-95 w-16 rounded-xl" href="#">
+<span class="material-symbols-outlined">camera_alt</span>
+<span class="font-label-caps text-label-caps mt-1">Presensi</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 active:bg-surface-container-high transition-transform scale-90 active:scale-95 w-16 rounded-xl" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-label-caps mt-1">Riwayat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 active:bg-surface-container-high transition-transform scale-90 active:scale-95 w-16 rounded-xl" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profil</span>
+</a>
+</nav>
+<style>
+        /* Add safe area padding for mobile browsers */
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 8px);
+        }
+    </style>
+</body></html>
